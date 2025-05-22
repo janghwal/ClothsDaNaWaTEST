@@ -20,7 +20,7 @@ jobs:
       - name: java setup
         uses: actions/setup-java@v2 # action에서 java환경을 setup한다.
         with:
-          distribution: 'corretto' # AdoptOpenJDK를 명시한다. 이외에 corretto, oracle 등이 있다.
+          distribution: 'temurin' # AdoptOpenJDK를 명시한다. 이외에 corretto, oracle 등이 있다.
           java-version: '17' # java 버전
 
       - name: make executable gradlew
