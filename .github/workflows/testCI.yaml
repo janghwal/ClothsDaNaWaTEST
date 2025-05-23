@@ -66,6 +66,7 @@ jobs:
               sudo docker rm $CONTAINER_ID
             fi
 
+
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/test1:1.0
             sudo docker run --name ${{ secrets.DOCKERHUB_USERNAME }}/test1-app -d -p 80:8080 -e TZ=Asia/Seoul ${{ secrets.DOCKERHUB_USERNAME }}/test1:1.0
 
