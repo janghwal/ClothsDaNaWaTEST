@@ -41,6 +41,9 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: check
+        run: docker info
+
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/test1:1.0
 
