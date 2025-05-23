@@ -16,18 +16,24 @@ jobs:
     services:
       mysql:
         image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: testdb
-          MYSQL_USER: testuser
-          MYSQL_PASSWORD: testpass
         ports:
           - 3306:3306
+        env:
+          MYSQL_DATABASE: ClothsDaNaWa
+          MYSQL_ROOT_PASSWORD: 1234
         options: >-
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=3
+
+    env:
+      DB_NAME: ClothsDaNaWa
+      DB_USERNAME: root
+      DB_PASSWORD: 1234
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/ClothsDaNaWa
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 1234
 
     steps:
       - name: checkout # github action에 보이는 이름
