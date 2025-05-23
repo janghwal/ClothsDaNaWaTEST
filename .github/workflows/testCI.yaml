@@ -31,9 +31,9 @@ jobs:
       DB_NAME: ClothsDaNaWa
       DB_USERNAME: root
       DB_PASSWORD: 1234
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/ClothsDaNaWa
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: 1234
+#      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/ClothsDaNaWa
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: 1234
 
     steps:
       - name: checkout # github action에 보이는 이름
@@ -50,6 +50,9 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Wait for MySQL
+        run: sleep 10
 
       - name: run unittest
         run: |
