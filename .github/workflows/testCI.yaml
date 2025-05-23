@@ -32,7 +32,7 @@ jobs:
       - name: Build Spring Boot Jar
         run: ./gradlew bootJar # 실행 가능한 jar 파일을 만든다.
 
-      - name: Build Docker image
+      - name: Build Docker image # jar 파일을 복사에서 Dockerfile에 넣는다.
         run : docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/test1:1.0 .
 
       - name: Login to DockerHub # docker hub에 로그인 한다. github에 저장된 DOCKERHUB_USERNAME, DOCKERHUB_TOKEN 사용
@@ -41,11 +41,6 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: check
-        run: docker info
-
-
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/test1:1.0
-
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/test1:1.0 # docker에 image push
 
