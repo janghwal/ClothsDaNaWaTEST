@@ -48,11 +48,11 @@ jobs:
       - name: make executable gradlew
         run: chmod +x ./gradlew # chmod를 리눅스에서 동작 시켜서 ./gradlew 파일의 권한을 읽을수 있도록 한다.
 
-      - name: Build with Gradle
-        run: ./gradlew build
-
       - name: Wait for MySQL
         run: sleep 10
+
+      - name: Build with Gradle
+        run: ./gradlew build
 
       - name: run unittest
         run: |
