@@ -1,5 +1,8 @@
-FROM openjdk:17 as build
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-Dspring.profiles.active=prod","-jar","/app.jar"]
-#-Dspring.profiles.active=내가 원하는 yml(properties) 프로필 적어주기
+FROM gradle:7.6-jdk17 AS BUILD
+WORKDIR /app
+COPY . .
+RUN ./gradlew bootJar
+FROM openjdk:17 AS RUNTIME
+WORKDIR /app
+COPY --from=BUILD /app/build/libs/*.jar app.jar
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "/app/app.jar"]
